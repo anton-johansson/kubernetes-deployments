@@ -5,6 +5,7 @@
 
 ## Services
 
-* [flannel](./1-flannel)
-* [CoreDNS](./2-coredns)
-* [NGINX ingress controller](./nginx-ingress-controller)
+* [Pod security policies](./1-pod-security-policies)
+* [flannel](./2-flannel)
+* [CoreDNS](./3-coredns)
+* [NGINX ingress controller](./4-nginx-ingress-controller)
