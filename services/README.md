@@ -9,7 +9,7 @@ Mandatory services are required to actually run anything properly in the cluster
 
 * [Pod security policies](./1-mandatory/1-pod-security-policies)
 * [flannel](./1-mandatory/2-flannel)
-* CoreDNS
+* [CoreDNS](./1-mandatory/3-coredns)
 * NGINX ingress controller
 
 
