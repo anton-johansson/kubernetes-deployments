@@ -7,7 +7,8 @@ This directory contains Kubernetes deployments for all services in the cluster. 
 
 Mandatory services are required to actually run anything properly in the cluster. It's not required to run exactly these services, but it's required to have them or an alternative to them. The order of them is also important, since we f$
 
-* flannel
+* [Pod security policies](./1-mandatory/1-pod-security-policies)
+* [flannel](./1-mandatory/2-flannel)
 * CoreDNS
 * NGINX ingress controller
 
