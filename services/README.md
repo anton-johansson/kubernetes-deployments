@@ -5,12 +5,12 @@ This directory contains Kubernetes deployments for all services in the cluster. 
 
 ## [Mandatory](./1-mandatory)
 
-Mandatory services are required to actually run anything properly in the cluster. It's not required to run exactly these services, but it's required to have them or an alternative to them. The order of them is also important, since we f$
+Mandatory services are required to actually run anything properly in the cluster. It's not required to run exactly these services, but it's required to have them or an alternative to them. The order of them is also important, since we add security policies that needs to apply on all pods and we create pod networking which is required by all pods. DNS may or may not be required by pods.
 
 * [Pod security policies](./1-mandatory/1-pod-security-policies)
 * [flannel](./1-mandatory/2-flannel)
 * [CoreDNS](./1-mandatory/3-coredns)
-* NGINX ingress controller
+* [NGINX ingress controller](./1-mandatory/4-nginx-ingress-controller)
 
 
 ## [Essential](./2-essential)
