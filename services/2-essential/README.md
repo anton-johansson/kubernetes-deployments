@@ -1,6 +1,6 @@
 # Essential services
 
-???
+Essential services aren't required to have a working cluster, but without them you won't be able to do much of the things that you probably want to do.
 
 
 ## Services

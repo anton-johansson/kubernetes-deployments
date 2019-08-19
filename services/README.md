@@ -18,7 +18,7 @@ Mandatory services are required to actually run anything properly in the cluster
 Essential services aren't required to have a working cluster, but without them you won't be able to do much of the things that you probably want to do.
 
 * Authentication
-* Certificate manager
+* [Certificate manager](./2-essential/2-certificate-manager)
 * Dynamic storage provider
 * Descheduler
 
