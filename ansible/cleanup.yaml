@@ -1,0 +1,27 @@
+- hosts: nginx
+  tasks:
+
+    - name: Check if keepalived is in systemd
+      stat:
+        path: /lib/systemd/system/keepalived.service
+      register: result
+
+    - name: Stop keepalived
+      systemd:
+        name: keepalived
+        state: stopped
+        enabled: False
+      when: result.stat.exists
+
+    - name: Uninstall keepalived
+      apt:
+        name: keepalived
+        state: absent
+
+    - name: Remove directories
+      file:
+        path: "{{ item }}"
+        state: absent
+      with_items:
+        - /usr/lib/keepalived
+        - /etc/keepalived

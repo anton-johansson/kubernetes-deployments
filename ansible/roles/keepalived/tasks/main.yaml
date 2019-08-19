@@ -1,0 +1,45 @@
+- name: Determine IP address of master
+  shell: "dig {{ inventory_hostname }} +short"
+  register: result_master_ip
+
+- name: Determine IP address of backup
+  shell: "dig {{ backup }} +short"
+  register: result_backup_ip
+
+- set_fact:
+    master_ip: "{{ result_master_ip.stdout }}"
+    backup_ip: "{{ result_backup_ip.stdout }}"
+    master_name: "{{ inventory_hostname.split('.')[0] }}"
+    backup_name: "{{ backup.split('.')[0] }}"
+    network_interface: "{{ network_interface | default('eth0') }}"
+    authentication_pass: "{{ authentication_pass | default('lw19k811') }}"
+
+- name: Install keepalived
+  apt:
+    name: keepalived
+    state: present
+
+- name: Ensure scripts directory exists
+  file:
+    state: directory
+    path: /usr/lib/keepalived
+
+- name: Copy scripts
+  copy:
+    src: "{{ item }}"
+    dest: "/usr/lib/keepalived/{{ item }}"
+    mode: 0755
+  with_items:
+    - script-manual-failover-check.sh
+    - script-nginx-failover-check.sh
+
+- name: Create configuration file
+  template:
+    src: keepalived.conf.j2
+    dest: /etc/keepalived/keepalived.conf
+
+- name: Start and enable keepalived
+  systemd:
+    name: keepalived
+    state: restarted
+    enabled: True

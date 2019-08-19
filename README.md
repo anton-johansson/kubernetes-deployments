@@ -20,3 +20,19 @@ There are many small but yet important things to consider when designing a good 
 ## Pre-requisites
 
 This repository expects that you have a completely empty, vanilla, bare metal Kubernetes cluster. It works perfectly with [Kubernetes The Right Way](https://github.com/amimof/kubernetes-the-right-way), which uses Ansible to initialize a vanilla bare metal cluster. This repository also utilizes Ansible to set up various tools on top of the cluster and it can even re-use the same Ansible inventory file, which makes them a perfect match.
+
+
+## Installing cluster
+
+This example installs the cluster with Kubernetes The Right Way with additional tools (found under [`ansible/`](./ansible)). Both uses Ansible and can share the same inventory file. See [`ansible-inventory`](./ansible-inventory) for an example inventory file.
+
+```shell
+$ ansible-playbook --inventory ~/projects/kubernetes-deployments/ansible-inventory ~/projects/kubernetes-deployments/ansible/install.yaml
+$ ansible-playbook --inventory ~/projects/kubernetes-deployments/ansible-inventory ~/projects/kubernetes-the-right-way/install.yml
+```
+
+The sample Ansible inventory file contains some things that you may want to tweak to your preferences:
+
+* `cluster_name`
+* Hostnames of all hosts
+* The `network_interface` variable of the `nginx` hosts. This is required by `keepalived` to properly watch the network interfaces.

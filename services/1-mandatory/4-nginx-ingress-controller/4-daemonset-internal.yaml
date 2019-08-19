@@ -9,6 +9,13 @@ data:
   log-format-upstream: '{"time":"$time_iso8601","accessType":"request","accessClass":"internal","remote_addr":"$remote_addr","request_id":"$req_id","remote_user":"$remote_user","bytes_sent":$bytes_sent,"request_time":$request_time,"status":"$status","host":"$host","request_protocol":"$server_protocol","path":"$uri","query_string":"$args","request_length":$request_length,"duration":$request_time,"method":"$request_method","referrer": "$http_referer","user_agent":"$http_user_agent","upstream_name":"$proxy_upstream_name","upstream_addr":"$upstream_addr","geo":{"country":"$geoip_country_code","city":"$geoip_city"}}'
   log-format-stream: 'escape=json ''{"time":"$time_iso8601","accessType":"stream","accessClass":"internal","remote_addr":"$remote_addr","bytes_sent":$bytes_sent,"status":"$status","request_protocol":"$protocol","session_time":$session_time,"upstream_name":"$proxy_upstream_name","upstream_addr":"$upstream_addr"}'''
   server-tokens: 'false'
+  http-snippet: |-
+    server {
+      listen 18182;
+      location / {
+          return 200;
+      }
+    }
 
 ---
 kind: ConfigMap
@@ -61,6 +68,9 @@ spec:
         - name: nginx-ingress-controller
           image: 'quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.24.1'
           ports:
+            - name: status
+              containerPort: 18182
+              hostPort: 18182
             - name: http
               containerPort: 80
               hostPort: 80

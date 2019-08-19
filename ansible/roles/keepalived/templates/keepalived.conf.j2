@@ -1,0 +1,59 @@
+vrrp_script check_manual_failover {
+    script "/usr/lib/keepalived/script-manual-failover-check.sh"
+    interval 5
+    weight 50
+}
+
+vrrp_script check_nginx_failover {
+    script "/usr/lib/keepalived/script-nginx-failover-check.sh"
+    interval 2
+    weight 50
+}
+
+vrrp_instance {{ master_name }} {
+    interface {{ network_interface }}
+    state MASTER
+    priority 102
+    virtual_router_id {{ master_router_id }}
+    advert_int 1
+    unicast_src_ip {{ master_ip }}
+    unicast_peer {
+        {{ backup_ip }}
+    }
+    authentication {
+        auth_type PASS
+        auth_pass {{ authentication_pass }}
+    }
+    virtual_ipaddress {
+        {{ master_virtual_ip1 }}
+        {{ master_virtual_ip2 }}
+    }
+    track_script {
+        check_manual_failover
+        check_nginx_failover
+    }
+}
+
+vrrp_instance {{ backup_name }} {
+    interface {{ network_interface }}
+    state BACKUP
+    priority 101
+    virtual_router_id {{ backup_router_id }}
+    advert_int 1
+    unicast_src_ip {{ master_ip }}
+    unicast_peer {
+        {{ backup_ip }}
+    }
+    authentication {
+        auth_type PASS
+        auth_pass {{ authentication_pass }}
+    }
+    virtual_ipaddress {
+        {{ backup_virtual_ip1 }}
+        {{ backup_virtual_ip2 }}
+    }
+    track_script {
+        check_manual_failover
+        check_nginx_failover
+    }
+}
