@@ -1,3 +1,5 @@
+<img src="https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.svg?sanitize=true" height="180" align="right" />
+
 # Kubernetes deployments
 
 This repository contains a bunch of deployments that forms a very sophisticated Kubernetes cluster with everything from ingress controllers and DNS to monitoring, metrics and authentication.
