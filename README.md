@@ -36,3 +36,8 @@ The sample Ansible inventory file contains some things that you may want to twea
 * `cluster_name`
 * Hostnames of all hosts
 * The `network_interface` variable of the `nginx` hosts. This is required by `keepalived` to properly watch the network interfaces.
+
+
+## License
+
+This project is distributed under the [MIT license](https://opensource.org/licenses/MIT).
