@@ -1,6 +1,6 @@
-# NGINX ingress controller
+# NGINX Ingress controller
 
-We use NGINX ([Kubernetes own one](https://github.com/kubernetes/ingress-nginx), not the [NGINX Inc. one](https://github.com/nginxinc/kubernetes-ingress) as our [Ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/). The Ingress controller is required to actually handle `Ingress` resources within the clusters. The NGINX ingress controller finds all `Ingress` resources and builds an `nginx.conf` from that. The idea is to route all HTTP traffic to nodes which have this controller and the controller will in turn route traffic to the appropriate pods.
+We use NGINX ([Kubernetes own one](https://github.com/kubernetes/ingress-nginx), not the [NGINX Inc. one](https://github.com/nginxinc/kubernetes-ingress)) as our [Ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/). The Ingress controller is required to actually handle `Ingress` resources within the clusters. The NGINX ingress controller finds all `Ingress` resources and builds an `nginx.conf` from that. The idea is to route all HTTP traffic to nodes which have this controller and the controller will in turn route traffic to the appropriate pods.
 
 
 ## Controlling network traffic
