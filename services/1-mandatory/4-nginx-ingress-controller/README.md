@@ -42,7 +42,7 @@ These IP addresses can of course be changed to any IP of your liking, as long as
 
 ## Usage
 
-To use these Ingress controllers, we need to annotate our `Ingress` resources properly (`kubernetes.io/ingress.class: external`) so it knows if it's internal or external traffic. Here is an example manifest for an external `Ingress`
+To use these Ingress controllers, we need to annotate our `Ingress` resources properly (`kubernetes.io/ingress.class: external`) so it knows if it's internal or external traffic. Here is an example manifest for an external `Ingress`:
 
 ```yaml
 ---
