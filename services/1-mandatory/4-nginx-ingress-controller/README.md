@@ -38,3 +38,28 @@ The example manifest above expects two labelled nodes for Ingress with the follo
 | `k8s-nginx-11` | `10.0.0.11` | `10.0.0.111`                            | `10.0.0.211`                            |
 
 These IP addresses can of course be changed to any IP of your liking, as long as you use two separate IP addresses for internal and external.
+
+
+## Usage
+
+To use these Ingress controllers, we need to annotate our `Ingress` resources properly (`kubernetes.io/ingress.class: external`) so it knows if it's internal or external traffic. Here is an example manifest for an external `Ingress`
+
+```yaml
+---
+kind: Ingress
+apiVersion: networking.k8s.io/v1beta1
+metadata:
+  namespace: some-namespace
+  name: some-application
+  annotations:
+    kubernetes.io/ingress.class: internal
+spec:
+  rules:
+    - host: some-external-hostname.ext
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: some-application
+              servicePort: 8080
+```
