@@ -6,12 +6,12 @@ This is an Ansible playbook for installing necessary services that [Kubernetes T
 ## Running
 
 ```shell
-$ ansible-playbook --inventory <path-to-inventory> install.yml
+$ ansible-playbook --inventory <path-to-inventory> install.yaml
 ```
 
 
 ## Cleaning up
 
 ```shell
-$ ansible-playbook --inventory <path-to-inventory> cleanup.yml
+$ ansible-playbook --inventory <path-to-inventory> cleanup.yaml
 ```
